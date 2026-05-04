@@ -1,0 +1,76 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "plugin": [
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "opencode-agent-skills",
+    "@paulp-o/opencode-auq@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "github:JRedeker/opencode-morph-fast-apply",
+    "~/.config/opencode/plugins/opencode-background-agents/background-agents.ts",
+    "~/.config/opencode/plugins/google-ai-search/index.ts",
+    "@spoons-and-mirrors/pocket-universe@latest",
+    "opencode-snip@latest"
+  ],
+  "instructions": [
+    "~/.config/opencode/instructions/morph-tools.md"
+  ],
+  "autoupdate": true,
+  "mcp": {
+    "context7": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "enabled": true
+    },
+    "chrome-devtools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "chrome-devtools-mcp@latest"
+      ],
+      "enabled": true
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true
+    },
+    "magic-21st": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@21st-dev/magic@latest"
+      ],
+      "enabled": true,
+      "environment": {
+        "API_KEY": ""
+      }
+    },
+    "blender": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "blender-mcp"
+      ],
+      "enabled": true
+    },
+    "fetch": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "mcp-server-fetch-typescript"
+      ],
+      "enabled": true
+    }
+  }
+}
