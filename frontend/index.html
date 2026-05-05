@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monolith</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;500&display=block" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="lib/xterm.css">
+    <style>
+        .landing h1, .landing .subtitle, .landing .btn-primary, .landing .footer {
+            visibility: hidden;
+        }
+        .fonts-loaded .landing h1,
+        .fonts-loaded .landing .subtitle,
+        .fonts-loaded .landing .btn-primary,
+        .fonts-loaded .landing .footer {
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Landing Page -->
+    <div id="landing" class="landing">
+        <div class="settings-icon" id="settings-btn" title="Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+        </div>
+        <div class="container">
+            <h1>Monolith</h1>
+            <p class="subtitle">OpenCode Launcher</p>
+            <button id="choose-dir-btn" class="btn-primary">Choose Directory</button>
+        </div>
+        <div class="footer">Monolith &mdash; OpenCode TUI Launcher</div>
+    </div>
+
+    <!-- Settings Page -->
+    <div id="settings-page" class="settings-page">
+        <div class="settings-header">
+            <h2>Settings</h2>
+            <button id="settings-close" class="settings-close" title="Close">&times;</button>
+        </div>
+        <div class="settings-tabs">
+            <button class="settings-tab active" data-tab="setup">Setup</button>
+            <button class="settings-tab" data-tab="config">Config</button>
+            <button class="settings-tab" data-tab="updater">Updater</button>
+        </div>
+        <div class="settings-content">
+            <!-- Setup Tab -->
+            <div id="tab-setup" class="tab-panel active">
+                <div class="setup-section">
+                    <h3>Initial Setup</h3>
+                    <p class="setup-desc">This will copy Monolith's config files to <code>~/.config/opencode/</code> and configure your 21st API key.</p>
+                    <div class="form-group">
+                        <label for="api-key-input">21st API Key</label>
+                        <input type="text" id="api-key-input" class="settings-input" placeholder="Enter your 21st API key">
+                    </div>
+                    <button id="setup-run-btn" class="btn-primary">Run Setup</button>
+                    <div id="setup-status" class="setup-status"></div>
+                </div>
+            </div>
+
+            <!-- Config Tab -->
+            <div id="tab-config" class="tab-panel">
+                <div class="config-section">
+                    <h3>Edit opencode.json</h3>
+                    <textarea id="config-editor" class="config-editor" spellcheck="false"></textarea>
+                    <div class="config-actions">
+                        <button id="config-save-btn" class="btn-primary">Save</button>
+                        <button id="config-reload-btn" class="btn-secondary">Reload</button>
+                    </div>
+                    <div id="config-status" class="config-status"></div>
+                </div>
+            </div>
+
+            <!-- Updater Tab -->
+            <div id="tab-updater" class="tab-panel">
+                <div class="updater-section">
+                    <h3>Updates</h3>
+                    <div class="version-info">
+                        <span>Current Version:</span>
+                        <span id="current-version" class="version-number">--</span>
+                    </div>
+                    <div class="update-actions">
+                        <button id="check-update-btn" class="btn-primary">Check for Updates</button>
+                        <button id="update-configs-btn" class="btn-secondary">Update Configs from GitHub</button>
+                    </div>
+                    <div id="updater-status" class="updater-status"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terminal View -->
+    <div id="terminal-view" class="terminal-view">
+        <div id="terminal"></div>
+    </div>
+
+    <script>
+        // Prevent font flash: show landing text only after fonts load
+        (function() {
+            function showFonts() {
+                document.body.classList.add('fonts-loaded');
+            }
+            if (document.fonts && document.fonts.ready) {
+                document.fonts.ready.then(showFonts);
+            }
+            // Fallback: show after 1.5s regardless
+            setTimeout(showFonts, 1500);
+        })();
+    </script>
+    <script src="lib/xterm.js"></script>
+    <script src="lib/xterm-addon-fit.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

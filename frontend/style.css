@@ -1,0 +1,470 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+    background-color: #0a0a0a;
+    color: #a0a0a0;
+}
+
+/* --- Landing Page --- */
+.landing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+.landing.hidden {
+    display: none;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+}
+
+.landing h1 {
+    font-size: 5rem;
+    font-weight: 400;
+    margin-bottom: 0.25rem;
+    color: #e0e0e0;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.landing .subtitle {
+    font-size: 0.9rem;
+    color: #606060;
+    margin-bottom: 3rem;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* Settings Icon */
+.settings-icon {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    color: #4a4a4a;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10;
+}
+
+.settings-icon:hover {
+    color: #c0c0c0;
+}
+
+/* Minimal Rounded Button */
+.btn-primary {
+    background-color: transparent;
+    color: #8a8a8a;
+    border: 1px solid #4a4a4a;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #8a8a8a;
+    color: #0a0a0a;
+    border-color: #8a8a8a;
+}
+
+.btn-primary:active {
+    background-color: #707070;
+    border-color: #707070;
+    color: #0a0a0a;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: #606060;
+    border: 1px solid #333333;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.btn-secondary:hover {
+    border-color: #606060;
+    color: #a0a0a0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 1.5rem;
+    font-size: 0.7rem;
+    color: #333333;
+    letter-spacing: 2px;
+    font-weight: 400;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* --- Settings Page --- */
+.settings-page {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    background-color: #0a0a0a;
+    color: #a0a0a0;
+    flex-direction: column;
+}
+
+.settings-page.active {
+    display: flex;
+}
+
+.settings-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #1a1a1a;
+    flex-shrink: 0;
+}
+
+.settings-header h2 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #e0e0e0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.settings-close {
+    background: none;
+    border: none;
+    color: #4a4a4a;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    font-family: 'Bebas Neue', sans-serif;
+    padding: 0 0.5rem;
+}
+
+.settings-close:hover {
+    color: #c0c0c0;
+}
+
+/* Tabs */
+.settings-tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 2rem;
+    border-bottom: 1px solid #1a1a1a;
+    flex-shrink: 0;
+}
+
+.settings-tab {
+    background: none;
+    border: none;
+    color: #4a4a4a;
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-family: 'Bebas Neue', sans-serif;
+    border-bottom: 2px solid transparent;
+    position: relative;
+    top: 1px;
+}
+
+.settings-tab:hover {
+    color: #8a8a8a;
+}
+
+.settings-tab.active {
+    color: #c0c0c0;
+    border-bottom-color: #c0c0c0;
+}
+
+/* Tab Panels */
+.settings-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 2rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.settings-content::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-panel {
+    display: none;
+    max-width: 600px;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+/* Setup Tab */
+.setup-section h3 {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.setup-desc {
+    color: #606060;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.setup-desc code {
+    color: #8a8a8a;
+    background: #1a1a1a;
+    padding: 0.1rem 0.3rem;
+    border-radius: 2px;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    color: #8a8a8a;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.settings-input {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    color: #c0c0c0;
+    padding: 0.75rem 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.settings-input:focus {
+    border-color: #606060;
+}
+
+.setup-status {
+    margin-top: 2.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    min-height: 1.5rem;
+    line-height: 1.6;
+    word-break: break-word;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.setup-status.success {
+    color: #8a8a8a;
+}
+
+.setup-status.error {
+    color: #b0b0b0;
+}
+
+/* Config Tab */
+.config-section h3 {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.config-editor {
+    width: 100%;
+    height: 400px;
+    background: #1a1a1a;
+    border: 1px solid #333333;
+    color: #c0c0c0;
+    padding: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    border-radius: 4px;
+    outline: none;
+    resize: vertical;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.config-editor::-webkit-scrollbar {
+    display: none;
+}
+
+.config-editor:focus {
+    border-color: #606060;
+}
+
+.config-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.config-status {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    min-height: 1.5rem;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.config-status.success {
+    color: #8a8a8a;
+}
+
+.config-status.error {
+    color: #b0b0b0;
+}
+
+/* Updater Tab */
+.updater-section h3 {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    margin-bottom: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.version-info {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: #606060;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.version-number {
+    color: #8a8a8a;
+}
+
+.update-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.updater-status {
+    margin-top: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    min-height: 1.5rem;
+    color: #8a8a8a;
+    user-select: text;
+    -webkit-user-select: text;
+}
+
+.updater-status.error {
+    color: #b0b0b0;
+}
+
+/* --- Terminal Page --- */
+.terminal-view {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+}
+
+.terminal-view.active {
+    display: block;
+}
+
+#terminal {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+}
+
+/* xterm reset */
+.xterm {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.xterm-screen {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.xterm-rows {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Hide xterm scrollbars */
+.xterm-viewport::-webkit-scrollbar {
+    display: none !important;
+}
+
+.xterm-viewport {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
