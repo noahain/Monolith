@@ -58,7 +58,7 @@ python main.py
 
 Python 3.12 · PyWebView · HTML5/CSS3/Vanilla JS
 
-## Development story
+## Development team
 
 - **Lead:** Noahain - product vision, design language
 - **Primary developer:** OpenCode (Kimi K2.6) - TUI wrapping logic, directory orchestration, config bridge
